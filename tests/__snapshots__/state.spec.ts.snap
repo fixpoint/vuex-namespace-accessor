@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createAccessor returns an accessor which state is linked to the module 1`] = `
+Object {
+  "count": 0,
+}
+`;
+
+exports[`createAccessor returns an accessor which state is linked to the module 2`] = `
+Object {
+  "count": 20,
+}
+`;
+
+exports[`createAccessor returns an accessor which state is linked to the module 3`] = `
+Object {
+  "count": 30,
+}
+`;
