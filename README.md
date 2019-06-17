@@ -9,6 +9,8 @@ Create an accessor instance of a **namespaced** module of [Vuex](https://github.
 
 **Under development**
 
+[![Edit vuex-namespace-accessor demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-namespace-accessor-demo-qw00c?fontsize=14)
+
 ## Install
 
 ```
