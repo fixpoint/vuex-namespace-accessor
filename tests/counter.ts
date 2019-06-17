@@ -60,7 +60,9 @@ const actions: DefineActions<
 
 export default {
   namespaced: true,
-  state,
+  state() {
+    return { ...state };
+  },
   getters,
   mutations,
   actions,
