@@ -1,4 +1,9 @@
 # vuex-namespace-accessor
+[![Build Status](https://travis-ci.com/lambdalisue/vuex-namespace-accessor.svg?branch=master)](https://travis-ci.com/lambdalisue/vuex-namespace-accessor)
+![Support Vue 2](https://img.shields.io/badge/support-Vue%202-yellowgreen.svg)
+![Support Vuex 3](https://img.shields.io/badge/support-Vuex%203-yellowgreen.svg)
+[![Version](https://img.shields.io/npm/v/vuex-namespace-accessor.svg)](https://www.npmjs.com/package/vuex-namespace-accessor)
+[![License](https://img.shields.io/github/license/lambdalisue/vuex-namespace-accessor.svg)](LICENSE)
 
 Create an accessor instance of a **namespaced** module of [Vuex](https://github.com/vuejs/vuex) store.
 
