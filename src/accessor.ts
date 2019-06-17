@@ -11,13 +11,23 @@ function getModuleState<S>(store: Store<any>, path: string): S {
 }
 
 function getModuleGetters<G>(store: Store<any>, path: string): G {
-  return new Proxy(
+  const prefix = path + '/';
+  return Object.defineProperties(
     {},
-    {
-      get<K extends keyof G>(_: any, name: K): G[K] {
-        return store.getters[`${[path, name].join('/')}`];
-      },
-    },
+    Object.assign(
+      {},
+      ...Object.keys(store.getters)
+        .filter(k => k.startsWith(prefix))
+        .map(k => {
+          return {
+            [k.substring(prefix.length)]: {
+              get() {
+                return store.getters[k];
+              },
+            },
+          };
+        }),
+    ),
   );
 }
 
