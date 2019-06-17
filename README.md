@@ -167,7 +167,7 @@ See [./example/ts/src/store](./example/ts/src/store) directory for more detail.
 ## Definition
 
 ```typescript
-interface ModuleAccessor<State, Getters, Mutations, Actions> {
+interface Accessor<State, Getters, Mutations, Actions> {
   state: State;
 
   getters: Getters;
@@ -182,5 +182,5 @@ interface ModuleAccessor<State, Getters, Mutations, Actions> {
 function createAccessor<S, G, M, A>(
   store: Store<any> || (() => Store<any>),
   path: string | string[],
-): ModuleAccessor<S, G, M, A>;
+): Accessor<S, G, M, A>;
 ```
