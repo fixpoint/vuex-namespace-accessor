@@ -1,11 +1,16 @@
 import { Store } from 'vuex';
-import { ModuleAccessor } from './accessor';
+import { Accessor, ModuleAccessor, LazyModuleAccessor } from './accessor';
 
-export { ModuleAccessor };
+export { Accessor };
 
 export function createAccessor<S = any, G = any, M = any, A = any>(
-  store: Store<any>,
+  store: Store<any> | (() => Store<any>),
   path: string | string[],
-): ModuleAccessor<S, G, M, A> {
-  return new ModuleAccessor(store, Array.isArray(path) ? path.join('/') : path);
+): Accessor<S, G, M, A> {
+  path = Array.isArray(path) ? path.join('/') : path;
+  if (typeof store === 'function') {
+    return new LazyModuleAccessor(store, path);
+  } else {
+    return new ModuleAccessor(store, path);
+  }
 }
