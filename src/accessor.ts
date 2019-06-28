@@ -75,6 +75,15 @@ export interface Accessor<S, G, M, A> {
   dispatch<K extends keyof A>(
     payloadWithType: { type: K } & A[K],
   ): Promise<any> | void;
+
+  watch(
+    getter: (state: S, getters: G) => any,
+    callback: () => void,
+    options?: {
+      deep?: boolean;
+      immediate?: boolean;
+    },
+  ): () => void;
 }
 
 export class ModuleAccessor<S, G, M, A> implements Accessor<S, G, M, A> {
@@ -97,6 +106,21 @@ export class ModuleAccessor<S, G, M, A> implements Accessor<S, G, M, A> {
 
   public dispatch(t: any, p?: any): Promise<any> | void {
     return moduleDispatch(this.store, this.path, t, p);
+  }
+
+  public watch(
+    getter: (state: S, getters: G) => any,
+    callback: () => void,
+    options?: {
+      deep?: boolean;
+      immediate?: boolean;
+    },
+  ): () => void {
+    return this.store.watch(
+      () => getter(this.state, this.getters),
+      callback,
+      options,
+    );
   }
 }
 
@@ -139,5 +163,20 @@ export class LazyModuleAccessor<S, G, M, A> implements Accessor<S, G, M, A> {
 
   public dispatch(t: any, p?: any): Promise<any> | void {
     return moduleDispatch(this.store, this.path, t, p);
+  }
+
+  public watch(
+    getter: (state: S, getters: G) => any,
+    callback: () => void,
+    options?: {
+      deep?: boolean;
+      immediate?: boolean;
+    },
+  ): () => void {
+    return this.store.watch(
+      () => getter(this.state, this.getters),
+      callback,
+      options,
+    );
   }
 }

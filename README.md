@@ -57,6 +57,20 @@ $counter.commit('inc', { amount: 10 });
 
 // Dispatch
 $counter.dispatch('incAsync', { amount: 20, delay: 500 });
+
+// Watch
+const unwatch = $counter.watch(
+  (state, getters) => {
+    // state = $counter.state
+    // getters = $counter.getters
+    return getters.half;
+  }, () => {
+    // Do something
+  }, {
+    immediate: false,
+    deep: false,
+  });
+)
 ```
 
 See [./example/js/src/store](./example/js/src/store) directory for more detail.
@@ -163,6 +177,13 @@ $counter.dispatch('incAsync', { amount: 20, delay: 500 });
 $counter.dispatch('incAsync', { amount: 20 });
 $counter.dispatch('incAsync', { foo: 20 });
 $counter.dispatch('foo');
+
+// OK
+$counter.watch((s) => s.count, () => { console.log('changed') });
+$counter.watch((_, g) => g.half, () => { console.log('changed') });
+// Fail
+$counter.watch((s) => s.half, () => { console.log('changed') });
+$counter.watch((_, g) => g.count, () => { console.log('changed') });
 ```
 See [./example/ts/src/store](./example/ts/src/store) directory for more detail.
 
@@ -179,6 +200,15 @@ interface Accessor<State, Getters, Mutations, Actions> {
 
   dispatch<K extends keyof Actions>(type: K, payload: Actions[K]): Promise<any> | void;
   dispatch<K extends keyof Actions>(payloadWithType: { type: K } & Actions[K]): Promise<any> | void;
+
+  watch(
+    getter: (state: S, getters: G) => any,
+    callback: () => void,
+    options?: {
+      deep?: boolean;
+      immediate?: boolean;
+    },
+  ): () => void;
 }
 
 function createAccessor<S, G, M, A>(
