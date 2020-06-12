@@ -1,5 +1,6 @@
 # vuex-namespace-accessor
-[![Build Status](https://travis-ci.com/lambdalisue/vuex-namespace-accessor.svg?branch=master)](https://travis-ci.com/lambdalisue/vuex-namespace-accessor)
+
+![Test](https://github.com/fixpoint/vuex-namespace-accessor/workflows/Test/badge.svg)
 ![Support Vue 2](https://img.shields.io/badge/support-Vue%202-yellowgreen.svg)
 ![Support Vuex 3](https://img.shields.io/badge/support-Vuex%203-yellowgreen.svg)
 [![Version](https://img.shields.io/npm/v/vuex-namespace-accessor.svg)](https://www.npmjs.com/package/vuex-namespace-accessor)
@@ -93,11 +94,10 @@ export const $counter = createAccessor(() => store, 'counter');
 export const store = new Vuex.Store({
   state: {},
   modules: {
-      counter,
+    counter,
   },
 });
 ```
-
 
 ## Type safety
 
@@ -156,7 +156,7 @@ import { $counter } from '@/store';
 
 // OK
 console.log($counter.state.count);
-// Fail 
+// Fail
 console.log($counter.state.foo);
 
 // OK
@@ -179,12 +179,33 @@ $counter.dispatch('incAsync', { foo: 20 });
 $counter.dispatch('foo');
 
 // OK
-$counter.watch((s) => s.count, () => { console.log('changed') });
-$counter.watch((_, g) => g.half, () => { console.log('changed') });
+$counter.watch(
+  s => s.count,
+  () => {
+    console.log('changed');
+  },
+);
+$counter.watch(
+  (_, g) => g.half,
+  () => {
+    console.log('changed');
+  },
+);
 // Fail
-$counter.watch((s) => s.half, () => { console.log('changed') });
-$counter.watch((_, g) => g.count, () => { console.log('changed') });
+$counter.watch(
+  s => s.half,
+  () => {
+    console.log('changed');
+  },
+);
+$counter.watch(
+  (_, g) => g.count,
+  () => {
+    console.log('changed');
+  },
+);
 ```
+
 See [./example/ts/src/store](./example/ts/src/store) directory for more detail.
 
 ## Definition
