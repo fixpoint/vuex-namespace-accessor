@@ -100,15 +100,15 @@ export class ModuleAccessor<S, G, M, A> implements Accessor<S, G, M, A> {
     this.getters = moduleGetters<G>(store, path);
   }
 
-  public commit(t: any, p?: any): void {
+  commit(t: any, p?: any): void {
     return moduleCommit(this.store, this.path, t, p);
   }
 
-  public dispatch(t: any, p?: any): Promise<any> | void {
+  dispatch(t: any, p?: any): Promise<any> | void {
     return moduleDispatch(this.store, this.path, t, p);
   }
 
-  public watch(
+  watch(
     getter: (state: S, getters: G) => any,
     callback: () => void,
     options?: {
@@ -143,29 +143,29 @@ export class LazyModuleAccessor<S, G, M, A> implements Accessor<S, G, M, A> {
     return this._store;
   }
 
-  public get state(): S {
+  get state(): S {
     if (!this._state) {
       this._state = moduleState<S>(this.store, this.path);
     }
     return this._state;
   }
 
-  public get getters(): G {
+  get getters(): G {
     if (!this._getters) {
       this._getters = moduleGetters<G>(this.store, this.path);
     }
     return this._getters;
   }
 
-  public commit(t: any, p?: any): void {
+  commit(t: any, p?: any): void {
     return moduleCommit(this.store, this.path, t, p);
   }
 
-  public dispatch(t: any, p?: any): Promise<any> | void {
+  dispatch(t: any, p?: any): Promise<any> | void {
     return moduleDispatch(this.store, this.path, t, p);
   }
 
-  public watch(
+  watch(
     getter: (state: S, getters: G) => any,
     callback: () => void,
     options?: {

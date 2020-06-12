@@ -24,7 +24,11 @@ module.exports = {
         allowTypedFunctionExpressions: true,
       },
     ],
-    '@typescript-eslint/explicit-member-accessibility': 'no-public',
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      { accessibility: 'no-public' },
+    ],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   overrides: [
     {
