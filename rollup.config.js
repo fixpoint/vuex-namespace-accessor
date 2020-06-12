@@ -22,9 +22,7 @@ export default [
         file: pkg.unpkg,
         format: 'umd',
         name: 'vuex-module-scope',
-        global: {
-          vuex: 'vuex',
-        },
+        extend: true,
         sourcemap: true,
       },
       {
