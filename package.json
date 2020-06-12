@@ -20,19 +20,19 @@
     "build": "rollup -c"
   },
   "author": {
-    "name": "lambdalisue",
-    "email": "lambdalisue@hashnote.net"
+    "name": "Fixpoint, Inc",
+    "email": "developer@fixpoint.co.jp"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lambdalisue/vuex-namespace-accessor"
+    "url": "https://github.com/fixpoint/vuex-namespace-accessor"
   },
   "keywords": [
     "vue",
     "vuex",
     "type-safe"
   ],
-  "homepage": "https://github.com/lambdalisue/vuex-namespace-accessor",
+  "homepage": "https://github.com/fixpoint/vuex-namespace-accessor",
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.4.5",
